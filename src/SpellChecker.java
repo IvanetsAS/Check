@@ -61,11 +61,19 @@ public class SpellChecker {
     }
 
     private void createDictionary() {
+
+        dict = new HashSet<>();
+
+        processDictFile("assets/dict_part1.txt");
+        processDictFile("assets/dict_part2.txt");
+        processDictFile("assets/dict_part3.txt");
+
+    }
+
+    private void processDictFile(String filePath) {
         try {
 
-            dict = new HashSet<>();
-            Scanner scanner = new Scanner(new File("assets/dict.opcorpora.txt"), "utf-8");
-
+            Scanner scanner = new Scanner(new File(filePath), "utf-8");
             while (scanner.hasNextLine()) {
                 String currentLine = scanner.nextLine();
                 if (
@@ -78,5 +86,7 @@ public class SpellChecker {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+
     }
 }
